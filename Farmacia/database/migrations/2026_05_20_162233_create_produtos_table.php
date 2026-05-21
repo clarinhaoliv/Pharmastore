@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('produtos', function (Blueprint $table) {
             $table->id();
             $table-> foreignId('id_fornecedor')->constraint() ->cascadeOnDelete(); 
-            $table->string('Nome');
-            $table->float('Preço');
-            $table->integer('Quantidade')->default(0);
+            $table->string('nome');
+            $table->decimal('preço', 8,2)->default(0.00);
+            $table->integer('quantidade')->default(0);
             $table->integer('estoque_minimo')->default(5);
-            $table->enum('Categoria', ['medicamento', 'perfumaria']);
+            $table->enum('categoria', ['medicamento', 'perfumaria']);
             $table->timestamps();
         });
     }

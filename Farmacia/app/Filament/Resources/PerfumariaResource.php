@@ -23,7 +23,14 @@ class PerfumariaResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('id_produto')
+                    ->required()
+                    ->numeric(),
+                Forms\Components\TextInput::make('Lote de Fabricação')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\DatePicker::make('Data de Validade')
+                    ->required(),
             ]);
     }
 
@@ -31,7 +38,22 @@ class PerfumariaResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('id_produto')
+                    ->numeric()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('Lote de Fabricação')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('Data de Validade')
+                    ->date()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //

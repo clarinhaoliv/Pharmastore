@@ -8,10 +8,10 @@ use App\Models\Fornecedores;
 class Produto extends Model
 {
     protected $fillable = [
-        'id_fornecedor', 'Nome', 'Preço', 'Quantidade', 'estoque_minimo', 'Categoria'
+        'id_fornecedor', 'nome', 'preço', 'quantidade', 'estoque_minimo', 'categoria'
     ];
 
-    public function fornecedores(){
+    public function fornecedor(){
         return $this->belongsTo(Fornecedores::class, 'id_fornecedor');
     }
 }

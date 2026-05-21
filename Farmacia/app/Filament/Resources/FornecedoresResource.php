@@ -23,7 +23,16 @@ class FornecedoresResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('Nome')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('Contato')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('CNPJ')
+                    ->label('CNPJ')
+                    ->required()
+                    ->maxLength(255),
             ]);
     }
 
@@ -31,7 +40,21 @@ class FornecedoresResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('Nome')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('Contato')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('CNPJ')
+                    ->label('CNPJ')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //

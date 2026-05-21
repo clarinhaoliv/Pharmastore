@@ -12,8 +12,6 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Select;
 
 class ProdutoResource extends Resource
 {
@@ -22,39 +20,66 @@ class ProdutoResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
-{
-    return $form->schema([
-        Select::make('id_fornecedor')
-            ->relationship('fornecedor', 'nome')
-            ->required(),
-            
-        TextInput::make('nome')
-            ->required()
-            ->maxLength(255),
+    {
+        return $form
+            ->schema([
+                Forms\Components\TextInput::make('id_fornecedor')
+                    ->relationship('fornecedor', 'nome')
+                    ->required()
+                    ->numeric(),
+                Forms\Components\TextInput::make('nome')
+                    ->required()
+                    ->maxLength(255)
+                    ->label('Nome'),
 
-        Select::make('categoria')
-            ->options([
-                'medicamento' => 'Medicamento',
-                'perfumaria' => 'Perfumaria',
-            ])
-            ->required(),
+                Forms\Components\TextInput::make('Preço')
+                    ->required()
+                    ->numeric(),
+                Forms\Components\TextInput::make('Quantidade')
+                    ->required()
+                    ->numeric()
+                    ->default(0),
+                Forms\Components\TextInput::make('estoque_minimo')
+                    ->required()
+                    ->numeric()
+                    ->default(5),
+                Forms\Components\Select::make('categoria')
+                ->label('Categoria')
+                ->options([
+                    'medicamento' => 'Medicamento',
+                    'perfumaria' => 'Perfumaria',
+                ])
+                ->required(),
+            ]);
+    }
 
-        TextInput::make('quantidade')
-            ->numeric()
-            ->required()
-            ->minValue(0),
-
-        TextInput::make('estoque_minimo')
-            ->numeric()
-            ->required()
-            ->minValue(0),
-    ]);
-}
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('id_fornecedor')
+                    ->numeric()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('Nome')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('Preço')
+                    ->numeric()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('Quantidade')
+                    ->numeric()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('estoque_minimo')
+                    ->numeric()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('Categoria'),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //
