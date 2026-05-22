@@ -5,14 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Produto;
 
-class Medicamentos extends Model
+class Medicamento extends Model
 {
     protected $fillable = [
-        'id_produto',
-        'lote_fabricacao',
-        'data_validade',
-        'principio_ativo',
-        'medicamento_controlado',
+        'id_produto', 'lote_fabricacao', 'data_validade', 'principio_ativo', 'medicamento_controlado'
     ];
 
     protected $casts = [

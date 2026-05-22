@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table-> foreignId('id_fornecedor')->constraint() ->cascadeOnDelete(); 
             $table->string('nome');
-            $table->integer('quantidade')->default(0);
             $table->decimal('preco', 8,2)->default(0.00);
+            $table->integer('quantidade')->default(0);
             $table->integer('estoque_minimo')->default(5);
-            $table->enum('Categoria', ['medicamento', 'perfumaria']);
+            $table->enum('categoria', ['medicamento', 'perfumaria']);
             $table->timestamps();
         });
     }

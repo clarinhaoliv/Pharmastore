@@ -5,7 +5,6 @@ namespace App\Filament\Resources\ProdutoResource\Pages;
 use App\Filament\Resources\ProdutoResource;
 use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
-use Filament\Notifications\Notification;
 
 class CreateProduto extends CreateRecord
 {
