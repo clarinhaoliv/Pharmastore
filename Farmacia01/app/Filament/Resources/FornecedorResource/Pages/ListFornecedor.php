@@ -6,7 +6,7 @@ use App\Filament\Resources\FornecedorResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
-class ListFornecedors extends ListRecords
+class ListFornecedor extends ListRecords
 {
     protected static string $resource = FornecedorResource::class;
 

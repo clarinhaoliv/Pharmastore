@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('produtos', function (Blueprint $table) {
             $table->id();
-            $table-> foreignId('id_fornecedor')->constraint() ->cascadeOnDelete(); 
+            $table->foreignId('fornecedor_id')
+                  ->constrained('fornecedores')
+                  ->cascadeOnDelete();
             $table->string('nome');
-            $table->decimal('preco', 8,2)->default(0.00);
+            $table->decimal('preco', 8, 2)->default(0.00);
             $table->integer('quantidade')->default(0);
             $table->integer('estoque_minimo')->default(5);
             $table->enum('categoria', ['medicamento', 'perfumaria']);

@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class FornecedorResource extends Resource
 {
-    protected static ?string $model = Fornecedores::class;
+    protected static ?string $model = Fornecedor::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-truck';
 
@@ -79,9 +79,9 @@ class FornecedorResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListFornecedores::route('/'),
-            'create' => Pages\CreateFornecedores::route('/create'),
-            'edit' => Pages\EditFornecedores::route('/{record}/edit'),
+            'index' => Pages\ListFornecedor::route('/'),
+            'create' => Pages\CreateFornecedor::route('/create'),
+            'edit' => Pages\EditFornecedor::route('/{record}/edit'),
         ];
     }
 }

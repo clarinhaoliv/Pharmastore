@@ -26,7 +26,7 @@ class ProdutoResource extends Resource
     {
         return $form
             ->schema([
-                Select::make('id_fornecedor')
+                Select::make('fornecedor_id')
                 ->label('Fornecedor')
                 ->relationship('fornecedor', 'nome')
                 ->required()
@@ -105,7 +105,7 @@ class ProdutoResource extends Resource
                 ->toggleable(),
         ])
         ->filters([
-            Tables\Filters\SelectFilter::make('id_fornecedor')
+            Tables\Filters\SelectFilter::make('fornecedor_id')
                 ->relationship('fornecedor', 'nome')
                 ->label('Fornecedor'),
 

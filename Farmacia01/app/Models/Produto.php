@@ -8,11 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Produto extends Model
 {
     protected $fillable = [
-        'id_fornecedor', 'nome', 'preco', 'quantidade', 'estoque_minimo', 'categoria',
+        'fornecedor_id', 'nome', 'preco', 'quantidade', 'estoque_minimo', 'categoria',
     ];
 
     public function fornecedor()
     {
-        return $this->belongsTo(Fornecedor::class, 'id_fornecedor');
+        return $this->belongsTo(Fornecedor::class, 'fornecedor_id');
     }
 }

@@ -26,7 +26,7 @@ class MedicamentoResource extends Resource
                 Forms\Components\TextInput::make('id_produto')
                     ->required()
                     ->numeric(),
-                Forms\Components\TextInput::make('lote_abricação')
+                Forms\Components\TextInput::make('lote_fabricacao')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\DatePicker::make('data_validade')
@@ -34,7 +34,7 @@ class MedicamentoResource extends Resource
                 Forms\Components\TextInput::make('principio_ativo')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('medicamento_ontrolado')
+                Forms\Components\TextInput::make('medicamento_controlado')
                     ->required(),
             ]);
     }
@@ -46,14 +46,18 @@ class MedicamentoResource extends Resource
                 Tables\Columns\TextColumn::make('id_produto')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('lote_fabricação')
+                Tables\Columns\TextColumn::make('lote_fabricacao')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('data_validade')
                     ->date()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('principio_ativo')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('medicamento_controlado'),
+                    Tables\Columns\TextColumn::make('medicamento_controlado')
+                    ->label('Controlado?')
+                    ->formatStateUsing(fn (bool $state): string => $state ? 'Não' : 'Sim')
+                    ->badge()
+                    ->color(fn (bool $state): string => $state ? 'danger' : 'success'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -86,9 +90,9 @@ class MedicamentoResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListMedicamentos::route('/'),
-            'create' => Pages\CreateMedicamentos::route('/create'),
-            'edit' => Pages\EditMedicamentos::route('/{record}/edit'),
+            'index' => Pages\ListMedicamento::route('/'),
+            'create' => Pages\CreateMedicamento::route('/create'),
+            'edit' => Pages\EditMedicamento::route('/{record}/edit'),
         ];
     }
 }

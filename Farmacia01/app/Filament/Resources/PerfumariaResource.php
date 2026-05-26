@@ -26,7 +26,7 @@ class PerfumariaResource extends Resource
                 Forms\Components\TextInput::make('id_produto')
                     ->required()
                     ->numeric(),
-                Forms\Components\TextInput::make('lote_fabricação')
+                Forms\Components\TextInput::make('lote_fabricacao')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\DatePicker::make('data_validade')
@@ -41,7 +41,7 @@ class PerfumariaResource extends Resource
                 Tables\Columns\TextColumn::make('id_produto')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('lote_fabricação')
+                Tables\Columns\TextColumn::make('lote_fabricacao')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('data_validade')
                     ->date()
